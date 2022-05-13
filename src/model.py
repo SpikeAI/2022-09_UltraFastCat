@@ -1,10 +1,25 @@
 
 from src.init import *  
 
+import torch
+import torch.nn.functional as nnf
 import torchvision
 from torchvision import datasets, models, transforms
 from torchvision.datasets import ImageFolder
 import torch.nn as nn
+
+class ShufflePatches(object): #https://stackoverflow.com/questions/66962837/shuffle-patches-in-image-batch
+    def __init__(self, patch_size):
+        self.ps = patch_size
+
+    def __call__(self, x):
+        # divide the batch of images into non-overlapping patches
+        u = nnf.unfold(x.unsqueeze(dim=0), kernel_size=self.ps, stride=self.ps, padding=0)
+        # permute the patches of each image in the batch
+        pu = torch.cat([b_[:, torch.randperm(b_.shape[-1])][None,...] for b_ in u], dim=0)
+        # fold the permuted patches back together
+        f = nnf.fold(pu, x.shape[-2:], kernel_size=self.ps, stride=self.ps, padding=0)
+        return f.squeeze(dim=0)
 
 # normalization used to train VGG
 # see https://pytorch.org/hub/pytorch_vision_vgg/
@@ -22,7 +37,7 @@ dataloaders = {}
 dataset_sizes = {}
 
 # VGG-16 datasets initialisation
-def datasets_transforms(image_size=args.image_size, p=0, num_workers=1, batch_size=args.batch_size, **kwargs):
+def datasets_transforms(image_size=args.image_size, p=0, shuffle=args.image_size , num_workers=1, angle=0, batch_size=args.batch_size, **kwargs):
     data_transforms = {
         'train': transforms.Compose([
             transforms.Resize((int(image_size), int(image_size))),
@@ -33,18 +48,18 @@ def datasets_transforms(image_size=args.image_size, p=0, num_workers=1, batch_si
 
         'val': transforms.Compose([
             transforms.Resize((int(image_size), int(image_size))),
-            transforms.AutoAugment(), # https://pytorch.org/vision/master/transforms.html#torchvision.transforms.AutoAugment
+            transforms.AutoAugment(), 
             transforms.RandomGrayscale(p=p),
-            transforms.ToTensor(),      # Convert the image to pyTorch Tensor data type.
+            transforms.ToTensor(),    
             transforms_norm ]),
 
         'test': transforms.Compose([
             transforms.Resize((int(image_size), int(image_size))),
             transforms.RandomGrayscale(p=p),
-            transforms.ToTensor(),      # Convert the image to pyTorch Tensor data type.
-            transforms_norm ]),
+            transforms.ToTensor(),
+            transforms_norm, 
+            ShufflePatches(patch_size=(shuffle,shuffle)) ]), # our new transform to shuffle patches of images
     }
-    #print(paths)
     
     for task in args.tasks:
         image_datasets[task] = {
@@ -58,7 +73,7 @@ def datasets_transforms(image_size=args.image_size, p=0, num_workers=1, batch_si
         dataloaders[task] = {
             folder: torch.utils.data.DataLoader(
                 image_datasets[task][folder], batch_size=batch_size,
-                shuffle=False if folder == "test" else True, num_workers=num_workers
+                shuffle=True if folder == "train" else False, num_workers=num_workers
             )
             for folder in args.folders
         }

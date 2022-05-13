@@ -15,7 +15,6 @@ import time
 
 from time import strftime, gmtime
 datetag = strftime("%Y-%m-%d", gmtime())
-#datetag = '2021-10-30'
 
 HOST, device = os.uname()[1], torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -32,7 +31,7 @@ def arg_parse():
     parser.add_argument("--folders", dest = 'folders', help =  "Set the training, validation and testing folders relative to the root",
                         default = ['test', 'val', 'train'], type = list)
     parser.add_argument("--tasks", dest = 'tasks', help =  "Set the training, validation and testing folders relative to the root",
-                        default = ['animal', 'artifact'], type = list)
+                        default = ['animal'], type = list)
     parser.add_argument("--goals", dest = 'goals', help =  "Set the training, validation and testing folders relative to the root",
                         default = ['target', 'distractor'], type = list)
     parser.add_argument("--N_images", dest = 'N_images', help ="Set the number of images per classe in the train folder",
@@ -46,7 +45,7 @@ def arg_parse():
     parser.add_argument("--image_sizes", dest = 'image_sizes', help = "Set the image_sizes of the input for experiment 2 (downscaling)",
                     default = [64, 128, 256, 512], type = list)
     parser.add_argument("--num_epochs", dest = 'num_epochs', help = "Set the number of epoch to perform during the traitransportationning phase",
-                    default = 50//DEBUG)
+                    default = 25//DEBUG)
     parser.add_argument("--batch_size", dest = 'batch_size', help="Set the batch size", default = 32)
     parser.add_argument("--lr", dest = 'lr', help="Set the learning rate", default = 0.0001)
     parser.add_argument("--momentum", dest = 'momentum', help="Set the momentum", default = 0.9)
@@ -92,13 +91,13 @@ paths_task ={}
 paths = {}
 class_wnids = {}
 N_images_per_class = {}
-all_models = []
+match = {}
 
 for task in args.tasks :
-    {all_models.append(model+'_'+task) for model in args.model_names}
     paths_task[task] = os.path.join(args.root, task) # data path
     os.makedirs(paths_task[task], exist_ok=True)
     paths[task] = {}
+    match[task] = []
     for folder, N_image in zip(args.folders, args.N_images):
         paths[task][folder] = os.path.join(args.root, task, folder) # data path
         N_images_per_class[folder] = N_image
@@ -113,7 +112,7 @@ with open(args.url_loader) as json_file:
 # gathering labels
 labels = []
 reverse_id_labels = {}
-for img_id in Imagenet_urls_ILSVRC_2016:
+for i_img, img_id in enumerate(Imagenet_urls_ILSVRC_2016):
     syn_= wn.synset_from_pos_and_offset('n', int(img_id.replace('n','')))
     reverse_id_labels[img_id] = syn_.lemmas()[0].name()
     labels.append(syn_.lemmas()[0].name())
@@ -122,6 +121,7 @@ for img_id in Imagenet_urls_ILSVRC_2016:
         for i in np.arange(len(sem_)):
             if sem_[i].lemmas()[0].name() == str(task) :
                 class_wnids[str(task)]['target'].append(img_id)
+                match[task].append(i_img)
         if img_id not in class_wnids[str(task)]['target']:
             class_wnids[str(task)]['distractor'].append(img_id)
 

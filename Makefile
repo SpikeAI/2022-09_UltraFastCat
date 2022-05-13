@@ -6,9 +6,13 @@ JN=$(J) --to notebook --inplace
 
 run:
 	$(JN) Init_src.ipynb
+	git commit -m 'results notebook: full run init' -a
+	git push
 	$(JN) UltraFastCat.ipynb
+	git commit -m 'results notebook: full run main' -a
+	git push
 	$(JN) Pruning.ipynb
-	git commit -m 'results notebook: full run' -a
+	git commit -m 'results notebook: full run pruning' -a
 	git push
 
 

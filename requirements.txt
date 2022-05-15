@@ -1,0 +1,17 @@
+pip
+matplotlib
+numpy
+pandas
+jinja2
+prompt-toolkit
+ipython
+jupyter_server
+jupyter
+jupyterlab-git
+nbconvert
+jupyterlab
+torch
+torchvision
+tqdm
+nltk
+seaborn

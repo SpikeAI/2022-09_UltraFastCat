@@ -4,6 +4,26 @@ Animals are able to categorize images from broad categories in a very efficient 
 
 ![An ultra fast cat](https://www.funny-games.biz/images/pictures/1922-ultra-fast-cat.jpg)
 
+## installation
+
+### dataset
+
+Fetch all images for the three tasks: 'animal', 'artifact' and 'random':
+
+```commandline
+git clone https://github.com/SpikeAI/DataSetMaker
+cd DataSetMaker
+python dataset_synset.py
+cd ..
+```
+
+### download the notebook
+
+```commandline
+git clone https://github.com/SpikeAI/2022-09_UltraFastCat
+jupyter notebook
+```
+
 ### Keywords
 
 categorization, vision, convolutional neural networks, psychophysics, primary visual cortex

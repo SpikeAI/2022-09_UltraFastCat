@@ -12,7 +12,7 @@ Animals are able to categorize images from broad categories in a very efficient 
 
 ### dataset
 
-To retrieve all images, we have set-up an independent library, [DataSet Maker](https://github.com/SpikeAI/DataSetMaker). To fetch all images for the three tasks: 'animal', 'artifact' and 'random', dowload anr un the corresponding script:
+Fetch all images for the three tasks: 'animal', 'artifact' and 'random':
 
 ```commandline
 git clone https://github.com/SpikeAI/DataSetMaker

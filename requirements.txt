@@ -1,17 +1,17 @@
+# https://pip.pypa.io/en/stable/user_guide/#requirements-files
+# use it to install dependencies with
+# `pip install -r requirements.txt`
 pip
 matplotlib
 numpy
-pandas
-jinja2
-prompt-toolkit
-ipython
-jupyter_server
-jupyter
-jupyterlab-git
-nbconvert
-jupyterlab
+imageio
+nltk
 torch
 torchvision
-tqdm
-nltk
+ipywidgets
+jupyter
+pandas
+requests
+sklearn
+scipy
 seaborn

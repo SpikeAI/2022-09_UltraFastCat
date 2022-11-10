@@ -20,7 +20,4 @@ dependencies:
   - pip
   - pip:
     - nltk
-    - NeuroTools
-    - slip
-    - loggabor
     - MotionClouds

@@ -4,7 +4,6 @@ Animals are able to categorize images from broad categories in a very efficient 
 
 ![An ultra fast cat](https://www.funny-games.biz/images/pictures/1922-ultra-fast-cat.jpg)
 
-
 * read the current preprint on [arxiv](https://arxiv.org/abs/2205.03635)
 * check-out the associated [zotero group](https://www.zotero.org/groups/4560566/ultrafastcat)
 

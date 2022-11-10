@@ -1,0 +1,26 @@
+# conda env create --file environment.yml
+# conda activate UltraFastCat
+name: UltraFastCat
+channels:
+  - conda-forge
+  - pytorch
+  - defaults
+dependencies:
+  - imageio
+  - jupyter
+  - numpy
+  - matplotlib
+  - nbconvert
+  - pandas
+  - scikit-learn
+  - scipy
+  - pytorch
+  - torchvision
+  - seaborn
+  - pip
+  - pip:
+    - nltk
+    - NeuroTools
+    - slip
+    - loggabor
+    - MotionClouds

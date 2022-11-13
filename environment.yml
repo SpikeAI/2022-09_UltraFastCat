@@ -4,8 +4,8 @@
 # conda remove -n UltraFastCat
 name: UltraFastCat
 channels:
-  - conda-forge
   - pytorch-nightly
+  - conda-forge
   - defaults
 dependencies:
   - imageio

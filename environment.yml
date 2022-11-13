@@ -4,22 +4,26 @@
 # conda remove -n UltraFastCat
 name: UltraFastCat
 channels:
-  - pytorch-nightly
+  # - pytorch-nightly
+  - pytorch
   - conda-forge
   - defaults
 dependencies:
-  - imageio
-  - jupyter
+  - python==3.9.13
   - numpy
   - matplotlib
-  - nbconvert
+  - seaborn
   - pandas
+  - imageio
+  - nltk
+  - notebook
   - scikit-learn
-  - scipy
   - pytorch
   - torchvision
-  - seaborn
-  - pip
-  - pip:
-    - nltk
-    - MotionClouds
+  # - ipykernel
+  # - jupyter
+  # - nbconvert
+  # - scipy
+  # - pip
+  # - pip:
+  #   - MotionClouds

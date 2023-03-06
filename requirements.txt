@@ -8,6 +8,7 @@ imageio
 nltk
 torch
 torchvision
+notebook
 ipywidgets
 jupyter
 pandas

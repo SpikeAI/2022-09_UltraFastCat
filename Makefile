@@ -1,6 +1,6 @@
 #################@#################@#################@#################
 #################@#################@#################@#################
-J=jupyter nbconvert --ExecutePreprocessor.kernel_name=python3 --ExecutePreprocessor.timeout=0 --allow-errors --execute
+J=jupyter nbconvert --ExecutePreprocessor.timeout=0 --allow-errors --execute
 JN=$(J) --to markdown  --stdout # for dev
 # JN=$(J) --to notebook  --inplace # for the final touch
 #################@#################@#################@#################

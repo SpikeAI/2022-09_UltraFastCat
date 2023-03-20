@@ -15,6 +15,8 @@ update:
 pull_babbage:
 	rsync -av  -e "ssh  -i ~/.ssh/id-ring-ecdsa"  laurent@10.164.7.21:metagit/JNJER/2023-03-09_UltraFastCat/cached_data .
 
+HOST=laurent@10.164.7.21 # babbage
+HOST=perrinet.l@10.164.6.190 # darwin
 push_data:
-	rsync -av  -e "ssh  -i ~/.ssh/id-ring-ecdsa" ../data laurent@10.164.7.21:metagit/JNJER/
+	rsync -av  -e "ssh  -i ~/.ssh/id-ring-ecdsa" ../data $(HOST):metagit/JNJER/
 #################@#################@#################@#################

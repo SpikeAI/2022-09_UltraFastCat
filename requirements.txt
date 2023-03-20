@@ -16,4 +16,3 @@ requests
 sklearn
 scipy
 seaborn
-scikit-learn

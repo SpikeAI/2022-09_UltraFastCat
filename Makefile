@@ -13,7 +13,7 @@ update:
 	python3 -m pip install --upgrade -r requirements.txt
 
 pull_babbage:
-	rsync -av  -e "ssh  -i ~/.ssh/id-ring-ecdsa"  laurent@10.164.7.21:metagit/JNJER/2023-03-09_UltraFastCat/cached_data .
+	rsync -av  -e "ssh  -i ~/.ssh/id-ring-ecdsa"  laurent@10.164.7.21:metagit/JNJER/2023-04_UltraFastCat/cached_data .
 
 pull_darwin:
 	rsync -av  -e "ssh  -i ~/.ssh/id-ring-ecdsa"  perrinet.l@10.164.6.190:metagit/JNJER/2023-03-09_UltraFastCat/cached_data .

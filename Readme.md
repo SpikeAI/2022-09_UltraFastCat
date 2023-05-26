@@ -4,8 +4,19 @@ Animals are able to categorize images from broad categories in a very efficient 
 
 ![An ultra fast cat](https://www.funny-games.biz/images/pictures/1922-ultra-fast-cat.jpg)
 
-* read the current preprint on [arxiv](https://arxiv.org/abs/2205.03635)
-* check-out the associated [zotero group](https://www.zotero.org/groups/4560566/ultrafastcat)
+ * read the paper [online](https://www.mdpi.com/2411-5150/7/2/29) or in [PDF](https://www.mdpi.com/2411-5150/7/2/29/pdf)
+
+
+ * [full code](https://github.com/SpikeAI/2022-09_UltraFastCat) with extensive [Supplementary Material](https://github.com/SpikeAI/2022-09_UltraFastCat/blob/main/Jeremie-etal-Vision_video-abstract.py)
+
+
+ * [Video Abstract](https://github.com/SpikeAI/2022-09_UltraFastCat/blob/main/Jeremie-etal-Vision_video-abstract.mp4) and code for  [Video Abstract](https://github.com/SpikeAI/2022-09_UltraFastCat/blob/main/Jeremie-etal-Vision_video-abstract.py)
+
+ * join the [Zotero group](https://www.zotero.org/groups/4560566/ultrafastcat) to add and discuss more items
+
+
+* (much) more info at  https://laurentperrinet.github.io/publication/jeremie-23-ultra-fast-cat/
+
 
 ## installation
 

@@ -1,11 +1,12 @@
 """
-2023-05-16_Jeremie-etal-Vision_video-abstract 
+Jeremie-etal-Vision_video-abstract 
+----------------------------------
 
 # Creating a video abstract for our paper as a movie using the (*excellent*) [MoviePy](http://zulko.github.io/moviepy/index.html) library:
 
-
     * Using the template @ https://laurentperrinet.github.io/sciblog/posts/2019-09-11_video-abstract-vision.html
     * and using that @ https://github.com/chloepasturel/AnticipatorySPEM/blob/master/2020-03_video-abstract/2020-03-24_video-abstract.ipynb
+    * or that more recent one: https://github.com/SpikeAI/2022_polychronies-review/blob/main/2022-12-23_video-abstract.py
 
 
 """
@@ -14,7 +15,7 @@
 videoname = 'Jeremie-etal-Vision_video-abstract'
 gifname = videoname + ".gif"
 gifname = None
-fps = 30
+fps = 3
 from moviepy.editor import VideoFileClip, ImageClip, TextClip, CompositeVideoClip
 
 H, W = 500, 800
@@ -57,7 +58,7 @@ for text in texts:
 #################################################################################
 #################################################################################
 chapters = [dict(title="Ultrafast visual categorisation", color='green',
-            content=[dict(figure='figures/find-cheetah-orig2.jpg', duration=11, subtitle=[
+            content=[dict(figure='figures_video/find-cheetah.jpg', duration=11, subtitle=[
                             "What distinguishes a visual scene that includes an animal ...", 
                             "from one that does not?",
                             "This question of “animacy detection” is crucial ...", 
@@ -66,42 +67,41 @@ chapters = [dict(title="Ultrafast visual categorisation", color='green',
                             "between prey and predators.",
                             "Yet human categorization of an animal can be performed ...", 
                             ]),
-                     dict(figure='figures/found_cheetah.png', duration=4, subtitle=[
+                     dict(figure='figures_video/found_cheetah.png', duration=3, subtitle=[
                             "very quickly and with high accuracy."])]), 
            dict(title="CNNs", color='orange',
-            content=[dict(figure='figures/vgg_16_transfer_learning_architecture.png', duration=8,                               subtitle=[
-                           "We choose to use a CNN such as VGG16...",
-                           "on a ecological task like finding an animal ...",
-                           "on a custom version of the Imagenet Challenge dataset ..."]),
-                    dict(figure='figures/fig_wordnet.png', duration=10, subtitle=[
-                           "In this study, we show that by exploiting the  ...",
+            content=[dict(figure='figures_video/vgg_16_transfer_learning_architecture.png', duration=5, subtitle=[
+                           "We choose to use the VGG16 CNN architecture ...",
+                           "on a ecological task such as finding an animal ...",
+                           "on a custom variant of the Imagenet Challenge dataset ..."]),
+                    dict(figure='figures_video/fig_wordnet.png', duration=7, subtitle=[
+                           "In particular, we show that by exploiting the  ...",
                             "semantic links of Imagenet labels, it is possible to use ...",
                             "transfer learning to efficiently retrain networks (here VGG16) ...",
                             "to categorise a label of interest (here 'animal')."]),
-                   dict(figure='figures/robustness_imagenet.png', duration=10, subtitle=[
+                   dict(figure='figures_video/robustness_imagenet.png', duration=8, subtitle=[
                             "Results demonstrated a very accurate response over 99%.",
                             "However, as soon as we added a perturbation,",
                             "such as a rotation of the input images...",
                             "the performance significatively dropped."]),
-                   dict(figure='figures/full_rot.png', duration=10, subtitle=[
+                   dict(figure='figures_video/full_rot.png', duration=10, subtitle=[
                             "The result for this network depends on the rotation,",
                             "angle (VGG LUT). Using data augmentation,",
                             "we could retrain the network to achieve...",
-                            "a similar performance for all angles."])
+                            "a robust performance for all angles."])
                     ]),
 
            dict(title="Animal features", color='red',
-            content=[dict(figure='figures/pruning_accuracy.png', duration=10, subtitle=[
+            content=[dict(figure='figures_video/pruning_accuracy.png', duration=10, subtitle=[
                             "Once this ""ecological"" categorization task defined,...",
                            "a second part of the study was to study the features...",
                            "that explain this robustness. By reducing the depth,...",
                            "of the CNN, and thus the complexity of the features used,...",
                            "we show their role in categorizing an animal...",]),
-                    dict(figure='figures/full_rot_pruned.png', duration=6, subtitle=[
+                    dict(figure='figures_video/full_rot_pruned.png', duration=6, subtitle=[
                             "In particular this gives an idea of the features needed ...",
                            "to perform this task, while retaining the robustness...",
-                           " which is observed in human vision."])]), 
-
+                           " which is also observed in human vision."])]), 
            ]
 
 
@@ -186,8 +186,8 @@ for text in texts:
     clip.append(txt)    
 
 # QRCODE
-# qrencode -o figures/qr_code.png -d 200 https://laurentperrinet.github.io/publication/jeremie-23-ultra-fast-cat/
-img = ImageClip('figures/qr_code.png').set_duration(duration)
+# qrencode -o figures_video/qr_code.png -d 200 https://laurentperrinet.github.io/publication/jeremie-23-ultra-fast-cat/
+img = ImageClip('figures_video/qr_code.png').set_duration(duration)
 img = img.resize(width=(W_fig*2)//3).set_start(t).set_pos('center')
 clip.append(img)
 

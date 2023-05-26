@@ -5,8 +5,13 @@ JN=$(J) --to markdown  --stdout # for dev
 # JN=$(J) --to notebook  --inplace # for the final touch
 #################@#################@#################@#################
 #################@#################@#################@#################
-all: 
+all: video
+default: run
+run: 
 	$(JN) UltraFastCat.ipynb
+
+video:
+	python3 Jeremie-etal-Vision_video-abstract.py
 
 #################@#################@#################@#################
 update:
